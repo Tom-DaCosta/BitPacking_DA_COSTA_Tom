@@ -1,4 +1,3 @@
-===============================
 Projet Bit Packing - M1 2025
 Auteur : Tom DA COSTA
 ===============================
@@ -6,15 +5,19 @@ Auteur : Tom DA COSTA
 Langage : Java 8+
 
 Compilation :
-
+```
+  mkdir ./bin
   javac -d bin src/BitPacking_DA_COSTA_Tom/Projet/*.java
+```
 
 Exécution :
+```
   java -cp bin BitPacking_DA_COSTA_Tom.Projet.Main
   java -cp bin BitPacking_DA_COSTA_Tom.Projet.QuickCheckMain
   java -cp bin BitPacking_DA_COSTA_Tom.Projet.MicroBenchMain OVERLAP 10000 4095
   java -cp bin BitPacking_DA_COSTA_Tom.Projet.MicroBenchMain NON_OVERLAP 10000 4095
   java -cp bin BitPacking_DA_COSTA_Tom.Projet.MicroBenchMain OVERFLOW 10000 4095
+```
 
 Description :
   Implémentation de trois variantes de Bit Packing :
