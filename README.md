@@ -2,7 +2,7 @@ Projet Bit Packing - M1 2025
 Auteur : Tom DA COSTA
 ===============================
 
-## Langage : Java 8+
+## Prérequis : Java 8+, Git
 
 ## Compilation :
 ```
