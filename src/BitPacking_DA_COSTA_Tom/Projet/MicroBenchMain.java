@@ -22,6 +22,15 @@ public class MicroBenchMain {
         return best;
     }
 
+    static void printBreakEvenLatency(long tComp, long tDecomp, long uncSize, long compSize) {
+        // t_critique = (tComp + tDecomp) / (uncSize - compSize)
+        // nanosec/octet
+        double delta = (tComp + tDecomp) / (double) (uncSize - compSize);
+        System.out.printf(Locale.US,
+                "Break-even latency: %.3f ns/byte (%.3f µs/MB)%n",
+                delta, delta * 1e6 / 1e3);
+    }
+
     public static void main(String[] args) {
         if (args.length < 3) {
             System.out.println("Usage: MicroBenchMain TYPE N MAX");
@@ -41,7 +50,7 @@ public class MicroBenchMain {
         int[] out = new int[N];
         c.decompress(out);
 
-        // si la roundtrip échoue, afficher l'indice et les valeurs concernées
+        // vérifier l'égalité
         if (!Arrays.equals(a, out)) {
             int idx = -1;
             for (int i = 0; i < a.length; i++)
@@ -56,7 +65,7 @@ public class MicroBenchMain {
             for (int i = from; i <= to; i++)
                 System.err.println(i + ": orig=" + a[i] + " out=" + out[i] + " get=" + c.get(i));
 
-            // Diagnostic: reconstruire la valeur à partir du tableau compressé
+            // debug reconstruction from comp[]
             try {
                 int k = c.bitsPerValue();
                 long startBit = (long) idx * k;
@@ -107,5 +116,8 @@ public class MicroBenchMain {
         System.out.printf(Locale.US,
                 "TYPE=%s N=%d MAX=%d  comp=%.3f ms  decomp=%.3f ms  get(1e5)=%.3f ms  size=%d->%d (ratio=%.3f)%n",
                 type, N, MAX, tComp / 1e6, tDecomp / 1e6, tGet / 1e6, unc, compB, ratio);
+
+        // Après les mesures, ajouter :
+        printBreakEvenLatency(tComp, tDecomp, unc, compB);
     }
 }

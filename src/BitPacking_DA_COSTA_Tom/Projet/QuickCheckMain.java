@@ -43,6 +43,11 @@ public class QuickCheckMain {
             }
         }
         long ms = System.currentTimeMillis() - start;
-        System.out.println("QuickCheck OK — cases=" + cases + " in " + ms + " ms");
+        System.out.println("QuickCheck OK ; cases=" + cases + " in " + ms + " ms");
+
+        // Test de l'exemple de la consigne
+        int[] example = { 1, 2, 3, 1024, 4, 5, 2048 };
+        roundtrip(CompressionType.OVERFLOW, example);
+        System.out.println("Example from spec: OK");
     }
 }

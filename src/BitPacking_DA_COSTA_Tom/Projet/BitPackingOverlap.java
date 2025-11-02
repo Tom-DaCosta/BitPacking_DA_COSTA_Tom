@@ -22,7 +22,6 @@ public class BitPackingOverlap implements BitPacking {
             int wordIndex = (int) (bitPos >>> 5);
             int bitOffset = (int) (bitPos & 31);
 
-            // place la partie basse
             data[wordIndex] |= (v << bitOffset);
 
             int spill = bitOffset + k - 32;

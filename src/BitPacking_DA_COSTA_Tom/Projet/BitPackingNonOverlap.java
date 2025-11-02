@@ -5,7 +5,6 @@ public class BitPackingNonOverlap implements BitPacking {
     private int n;           // nb d'éléments
     private int k;           // bits par valeur
     private int mask;        // (1<<k)-1
-    // positions pour accès direct
     private int[] wordIdx;   // mot où commence l'élément i
     private int[] bitOff;    // offset (0..31) où commence l'élément i
 
@@ -17,7 +16,6 @@ public class BitPackingNonOverlap implements BitPacking {
         this.wordIdx = new int[n];
         this.bitOff  = new int[n];
 
-        // PASS 1 : calcul des positions + nb de mots nécessaires
         int w = 0;           // index du mot courant
         int off = 0;         // bit offset dans le mot courant (0..31)
         for (int i = 0; i < n; i++) {
@@ -38,7 +36,6 @@ public class BitPackingNonOverlap implements BitPacking {
         int words = w + (off > 0 ? 1 : 0);
         data = new int[Math.max(1, words)];
 
-        // PASS 2 : écriture des valeurs (aucun débordement par construction)
         for (int i = 0; i < n; i++) {
             int v = input[i] & mask;
             data[wordIdx[i]] |= (v << bitOff[i]);
