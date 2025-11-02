@@ -83,7 +83,7 @@ Mesures effectuées sur un tableau de `10 000` entiers avec `MAX = 4095` :
 Tous les tests automatiques (`QuickCheckMain`) se terminent avec succès :
 
 ```
-QuickCheck OK — cases=XXX in YYY ms
+QuickCheck OK ; cases=XXX in YYY ms
 ```
 
 Cela confirme la **correction** du codage/décodage et la **cohérence des valeurs obtenues via `get()`** pour les trois variantes.
